@@ -1,0 +1,87 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Number of Student by Enrolment",
+  "width": "container",
+  "height": 400,
+  "params": [
+    {
+      "name": "School_selection",
+      "value": "Government",
+      "bind": {
+        "input": "select",
+        "options": [
+          "Government",
+          "Non-Government"
+        ],
+        "labels": [
+          "Government",
+          "Non-Government"
+        ],
+        "name": "School Selection: "
+        }
+      }
+      ],
+      "projection": {"type": "equirectangular"},
+      "layer": [
+        {
+          "data": {
+            "url": "https://raw.githubusercontent.com/arethasantosa/Assignment-2/main/statemelb.json",
+            "format": {"type": "topojson", "feature": "states"}
+          },
+          "transform": [
+            {
+              "calculate": "'Data is not available in ' + datum.properties.STATE_NAME",
+              "as": "note"
+            }
+          ],
+          "mark": {
+            "type": "geoshape",
+            "fill": "#ddd",
+            "stroke": "white",
+            "strokeWidth": 1
+          },
+          "encoding": {"tooltip": {"field": "note"}}
+        },
+        {
+          "data": {
+            "url": "https://raw.githubusercontent.com/arethasantosa/Assignment-2/main/Student%20enrolment%20by%20state.csv"
+          },
+          "transform": [
+            {
+              "lookup": "States",
+              "from": {
+                "data": {
+                  "url": "https://raw.githubusercontent.com/asil0016/FIT-3179-TEST/Homework-Week-10/map_visualisation/js/map_states.topojson",
+                  "format": {
+                    "type": "topojson",
+                    "feature": "states"
+                  }
+                },
+                "key": "properties.STATE_NAME"
+              },
+              "as": "geo"
+            },
+            {"filter": "datum.School == School_selection"}
+          ],
+          "mark": {"type": "geoshape", "stroke": "#64473C", "strokeWidth": 0.5},
+          "encoding": {
+            "shape": {"field": "geo", "type": "geojson"},
+            "color": {
+              "field": "Student",
+              "type": "quantitative",
+              "scale": {"scheme": "Reds"}},
+          "tooltip": [
+            {"field": "States", "type": "nominal", "title": "State"},
+            {"field": "Student", "type": "quantitative", "title": "Total number of student"}
+          ]
+      }}
+    ],
+   "config": {
+        "background":"#D4E1EE",
+        "style": {
+          "cell": {
+            "stroke": "transparent"
+          }
+        }
+      }
+  }

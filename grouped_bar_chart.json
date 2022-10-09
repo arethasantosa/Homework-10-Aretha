@@ -1,0 +1,42 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Engagement In Work or Study By Age Or Sex",
+  "width": "container",
+  "height": 300,
+  "data": {
+    "values": [
+      {"category":"Males 15-24", "group": "Fully engaged", "value":81.2},
+      {"category":"Males 15-24", "group": "Partially engaged", "value":9.1},
+      {"category":"Males 15-24", "group": "No study or employment", "value":9.7},
+       {"category":"Females 15-24", "group": "Fully engaged", "value":81.2},
+      {"category":"Females 15-24", "group": "Partially engaged", "value":11.3},
+      {"category":"Females 15-24", "group": "No study or employment", "value":7.5},
+       {"category":"Males 25-44", "group": "Fully engaged", "value":82.4},
+      {"category":"Males 25-44", "group": "Partially engaged", "value":8.6},
+      {"category":"Males 25-44", "group": "No study or employment", "value":9},
+      {"category":"Females 25-44", "group": "Fully engaged", "value":55},
+      {"category":"Females 25-44", "group": "Partially engaged", "value":26.3},
+      {"category":"Females 25-44", "group": "No study or employment", "value":18.6},
+       {"category":"Males 45-74", "group": "Fully engaged", "value":54},
+      {"category":"Males 45-74", "group": "Partially engaged", "value":11.2},
+      {"category":"Males 45-74", "group": "No study or employment", "value":34.8},
+     {"category":"Females 45-74", "group": "Fully engaged", "value":32.7},
+      {"category":"Females 45-74", "group": "Partially engaged", "value":24.3},
+      {"category":"Females 45-74", "group": "No study or employment", "value":43.1},
+    ]
+  },
+  "mark": "bar",
+  "encoding": {
+    "x": {"field": "category", "title": "Category"},
+    "y": {"field": "value", "type": "quantitative", "title": "Value"},
+    "xOffset": {"field": "group"},
+    "color": {"field": "group","scale": {"scheme": "Orangered"}}},
+    "config": {
+    "background":"#D4E1EE",
+    "style": {
+      "cell": {
+        "stroke": "transparent"
+      }
+    }
+  }
+  }
